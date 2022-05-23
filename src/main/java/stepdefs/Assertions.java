@@ -3,6 +3,8 @@ package stepdefs;
 import io.cucumber.java8.En;
 import io.restassured.response.ValidatableResponse;
 
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.hasSize;
 
@@ -51,6 +53,16 @@ public class Assertions implements En {
         And("^users should have an id$", () -> {
 
             validatableResponse.body("data.id", everyItem(notNullValue()));
+
+        });
+
+        And("^user id (\\d+) first name should be \"([^\"]*)\" and last name should be \"([^\"]*)\"$", (Integer userId, String fName, String lName) -> {
+
+            List<Integer> userIds = validatableResponse.extract().path("data.id");
+            int index = userIds.indexOf(userId);
+
+            validatableResponse.body("data[" + index + "].first_name", equalTo(fName));
+            validatableResponse.body("data[" + index + "].last_name", equalTo(lName));
 
         });
 

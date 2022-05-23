@@ -26,6 +26,12 @@ public class Steps implements En {
 
         });
 
+        Given("^I want to search for the users in page (\\d+)$", (Integer pageNo) -> {
+
+            requestSpecification = given().param("page", pageNo);
+
+        });
+
     }
 
 }
