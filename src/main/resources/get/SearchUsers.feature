@@ -8,3 +8,5 @@ Feature: Search Users using GET request
     And per page should be 6
     And total users should be 12
     And total pages should be 2
+    And response should return 6 users
+    And users should have an id
