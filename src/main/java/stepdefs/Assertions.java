@@ -66,6 +66,32 @@ public class Assertions implements En {
 
         });
 
+        And("^user id should be (\\d+)$", (Integer id) -> {
+
+            validatableResponse.body("data.id", equalTo(id));
+
+        });
+
+        And("^user first name should be \"([^\"]*)\" and last name should be \"([^\"]*)\"$", (String fName, String lName) -> {
+
+            validatableResponse.body("data.first_name", equalTo(fName));
+            validatableResponse.body("data.last_name", equalTo(lName));
+
+        });
+
+        And("^user name should be \"([^\"]*)\" and job should be \"([^\"]*)\"$", (String name, String job) -> {
+
+            validatableResponse.body("name", equalTo(name));
+            validatableResponse.body("job", equalTo(job));
+
+        });
+
+        And("^user should have an id$", () -> {
+
+            validatableResponse.body("id", notNullValue());
+
+        });
+
     }
 
 }

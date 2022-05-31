@@ -1,6 +1,8 @@
 package stepdefs;
 
+import gherkin.deps.com.google.gson.JsonObject;
 import io.cucumber.java8.En;
+import io.restassured.internal.RequestSpecificationImpl;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -29,6 +31,37 @@ public class Steps implements En {
         Given("^I want to search for the users in page (\\d+)$", (Integer pageNo) -> {
 
             requestSpecification = given().param("page", pageNo);
+
+        });
+
+        Given("^I want to search for user id (\\d+)$", (Integer userId) -> {
+
+            requestSpecification = given().pathParam("id", userId);
+
+        });
+
+        When("^I click search user$", () -> {
+
+            response = requestSpecification.when().get("https://reqres.in/api/users/{id}");
+            response.prettyPrint();
+
+        });
+
+        Given("^I want to create an user with name \"([^\"]*)\" and job \"([^\"]*)\"$", (String name, String job) -> {
+
+            JsonObject reqBody = new JsonObject();
+            reqBody.addProperty("name", name);
+            reqBody.addProperty("job", job);
+
+            requestSpecification = given().contentType("application/json").body(reqBody.toString());
+
+        });
+
+        When("^I click create user$", () -> {
+
+            response = requestSpecification.when().post("https://reqres.in/api/users");
+            System.out.println(((RequestSpecificationImpl) requestSpecification).getBody());
+            response.prettyPrint();
 
         });
 

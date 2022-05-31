@@ -33,3 +33,10 @@ Feature: Search Users using GET request
       And user id 10 first name should be "Byron" and last name should be "Fields"
       And user id 11 first name should be "George" and last name should be "Edwards"
       And user id 12 first name should be "Rachel" and last name should be "Howell"
+
+      Scenario: Verify Searching users by ID
+        Given I want to search for user id 2
+        When I click search user
+        Then I should get a successful response with status code 200
+        And user id should be 2
+        And user first name should be "Janet" and last name should be "Weaver"
