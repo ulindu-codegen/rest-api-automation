@@ -65,6 +65,38 @@ public class Steps implements En {
 
         });
 
+        Given("^I want to update user id (\\d+) name as \"([^\"]*)\" AND job as \"([^\"]*)\"$", (Integer userId, String name, String job) -> {
+
+            JsonObject reqBody = new JsonObject();
+            reqBody.addProperty("name", name);
+            reqBody.addProperty("job", job);
+
+            requestSpecification = given().contentType("application/json").body(reqBody.toString()).pathParam("id", userId);
+
+        });
+
+        When("^I click update user$", () -> {
+
+            response = requestSpecification.when().put("https://reqres.in/api/users/{id}");
+            System.out.println(((RequestSpecificationImpl) requestSpecification).getBody());
+            response.prettyPrint();
+
+        });
+
+        Given("^I want to delete user id (\\d+)$", (Integer userId) -> {
+
+            requestSpecification = given().pathParam("id", userId);
+
+        });
+
+        When("^I click delete user$", () -> {
+
+            response = requestSpecification.when().delete("https://reqres.in/api/users/{id}");
+            System.out.println(((RequestSpecificationImpl) requestSpecification).getURI());
+            response.prettyPrint();
+
+        });
+
     }
 
 }

@@ -17,6 +17,7 @@ public class Assertions implements En {
         Then("^I should get a successful response with status code (\\d+)$", (Integer statusCode) -> {
 
             validatableResponse = Steps.response.then().statusCode(statusCode);
+            Attachment.reportGeneration(Steps.requestSpecification, Steps.response);
 
         });
 
@@ -89,6 +90,12 @@ public class Assertions implements En {
         And("^user should have an id$", () -> {
 
             validatableResponse.body("id", notNullValue());
+
+        });
+
+        And("^updated date should be \"([^\"]*)\"$", (String updatedDate) -> {
+
+            validatableResponse.body("updatedAt", containsString(updatedDate));
 
         });
 

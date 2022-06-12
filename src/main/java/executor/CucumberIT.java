@@ -12,7 +12,7 @@ public class CucumberIT {
 
                 "--threads", "1",
                 "-p", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm",
-                "-g", "stepdefs", "src/main/resources/post"
+                "-g", "stepdefs", "src/main/resources"
 
         }, CucumberIT.class.getClassLoader());
 
