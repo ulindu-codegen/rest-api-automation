@@ -1,5 +1,6 @@
 Feature: Delete Users using DELETE Request
 
+  @DeleteUser
   Scenario: Verifying Deleting User
     Given I want to delete user id 2
     When I click delete user

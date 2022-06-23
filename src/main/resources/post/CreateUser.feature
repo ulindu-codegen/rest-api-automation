@@ -1,5 +1,6 @@
 Feature:  Create Users using POST Request
 
+  @CreateUser
   Scenario: Verifying Creating Users
     Given I want to create an user with name "Tom" and job "QA"
     When I click create user

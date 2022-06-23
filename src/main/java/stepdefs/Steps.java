@@ -1,10 +1,13 @@
 package stepdefs;
 
 import gherkin.deps.com.google.gson.JsonObject;
+import io.cucumber.java.Before;
 import io.cucumber.java8.En;
 import io.restassured.internal.RequestSpecificationImpl;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.After;
+import org.junit.jupiter.api.BeforeAll;
 
 import static io.restassured.RestAssured.given;
 
@@ -96,6 +99,26 @@ public class Steps implements En {
             response.prettyPrint();
 
         });
+
+        Given("^this is the feature background$", () -> {
+
+            System.out.println("Background : Executes Before Each Test Scenario In The Feature File");
+
+        });
+
+    }
+
+    @Before
+    public void before() {
+
+        System.out.println("@Before : Executes Before Each Test Scenario");
+
+    }
+
+    @After
+    public void after() {
+
+        System.out.println("@After : Executes After Each Test Scenario");
 
     }
 

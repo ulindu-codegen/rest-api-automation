@@ -1,5 +1,9 @@
 Feature: Search Users using GET request
 
+  Background: This Executes Before Each Test Scenarios In This Feature File
+    Given this is the feature background
+
+  @SearchAllUsers @GETScenario
   Scenario: Verify searching all users
     Given I want to search for all the users
     When I click search users
@@ -17,6 +21,7 @@ Feature: Search Users using GET request
     And user id 5 first name should be "Charles" and last name should be "Morris"
     And user id 6 first name should be "Tracey" and last name should be "Ramos"
 
+    @SearchUsersPage2 @GETScenario
     Scenario: Verify Searching users in the Page 2
       Given I want to search for the users in page 2
       When I click search users
@@ -34,6 +39,7 @@ Feature: Search Users using GET request
       And user id 11 first name should be "George" and last name should be "Edwards"
       And user id 12 first name should be "Rachel" and last name should be "Howell"
 
+      @SearchUser2
       Scenario: Verify Searching users by ID
         Given I want to search for user id 2
         When I click search user
