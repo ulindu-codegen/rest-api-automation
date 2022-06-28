@@ -17,5 +17,5 @@ Feature: Updating Users using PUT request
     And updated date should be "<updatedDate>"
     Examples:
       | userId | userName | job | updatedDate   |
-      | 2      | Tim      | QA  | 2022-06-23T20  |
-      | 3      | Anne     | DEV | 2022-06-23T20 |
+      | 2      | Tim      | QA  | 2022-06-28T19  |
+      | 3      | Anne     | DEV | 2022-06-28T19 |

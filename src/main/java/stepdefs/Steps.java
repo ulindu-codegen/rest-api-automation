@@ -9,6 +9,8 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.After;
 import org.junit.jupiter.api.BeforeAll;
 
+import java.util.List;
+
 import static io.restassured.RestAssured.given;
 
 public class Steps implements En {
@@ -103,6 +105,29 @@ public class Steps implements En {
         Given("^this is the feature background$", () -> {
 
             System.out.println("Background : Executes Before Each Test Scenario In The Feature File");
+
+        });
+
+        Then("^I want to create a user with id (\\d+) AND job \"([^\"]*)\"$", (Integer id, String job) -> {
+
+            List<Integer> userID = Assertions.validatableResponse.extract().path("data.id");
+            int index = userID.indexOf(id);
+
+
+            JsonObject reqBody = new JsonObject();
+            reqBody.addProperty("name", Assertions.validatableResponse.extract().path("data["+index+"].first_name").toString());
+            reqBody.addProperty("job", job);
+
+            requestSpecification = given().contentType("application/json").body(reqBody.toString());
+
+        });
+
+        Then("^I want to delete user \"([^\"]*)\"$", (String firstName) -> {
+
+            List<String> username = Assertions.validatableResponse.extract().path("data.first_name");
+            int index = username.indexOf(firstName);
+
+            requestSpecification = given().pathParam("id", Assertions.validatableResponse.extract().path("data["+index+"].id"));
 
         });
 
