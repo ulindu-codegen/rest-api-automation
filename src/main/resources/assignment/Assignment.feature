@@ -59,3 +59,17 @@ Feature: QRest Final Assignment
       | 5      | Charles   | Morris   |
       | 7      | Michael   | Lawson   |
       | 9      | Tobias    | Funke    |
+
+  @CreateUsersWithName
+  Scenario Outline: Verifying Creating Users with name Jane, Adam, Paul
+    Given I want to create an user with name "<name>" and job "<job>"
+    When I click create user
+    Then I should get a successful response with status code 201
+    And user name should be "<name>" and job should be "<job>"
+    And user should have an id
+
+    Examples:
+      | name | job |
+      | Jane | BA  |
+      | Adam | DEV |
+      | Paul | QA  |
