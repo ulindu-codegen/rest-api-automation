@@ -98,3 +98,64 @@ Feature: QRest Final Assignment
       | 4      |
       | 8      |
       | 12     |
+
+  @CreateUsersWithUserId
+  Scenario Outline: Verifying Creating Users with User ID 2, 4
+    Given I want to search for all the users
+    When I click search users
+    Then I should get a successful response with status code 200
+
+    And page number should be <pageNo>
+    And per page should be <perPage>
+    And total users should be <totalUsers>
+    And total pages should be <totalPages>
+    And response should return <noOfUsers> users
+    And users should have an id
+
+    And user id <userId1> first name should be "<firstName1>" and last name should be "<lastName1>"
+    And user id <userId2> first name should be "<firstName2>" and last name should be "<lastName2>"
+    And user id <userId3> first name should be "<firstName3>" and last name should be "<lastName3>"
+    And user id <userId4> first name should be "<firstName4>" and last name should be "<lastName4>"
+    And user id <userId5> first name should be "<firstName5>" and last name should be "<lastName5>"
+    And user id <userId6> first name should be "<firstName6>" and last name should be "<lastName6>"
+
+    Then I want to create a user with id <userId> AND job "<job>"
+    When I click create user
+    Then I should get a successful response with status code 201
+
+    And user name should be "<username>" and job should be "<job>"
+    And user should have an id
+
+    Examples:
+      | pageNo | perPage | totalUsers | totalPages | noOfUsers | userId1 | firstName1 | lastName1 | userId2 | firstName2 | lastName2 | userId3 | firstName3 | lastName3 | userId4 | firstName4 | lastName4 | userId5 | firstName5 | lastName5 | userId6 | firstName6 | lastName6 | userId | job | username |
+      | 1      | 6       | 12         | 2          | 6         | 1       | George     | Bluth     | 2       | Janet      | Weaver    | 3       | Emma       | Wong      | 4       | Eve        | Holt      | 5       | Charles    | Morris    | 6       | Tracey     | Ramos     | 2      | DEV | Janet    |
+      | 1      | 6       | 12         | 2          | 6         | 1       | George     | Bluth     | 2       | Janet      | Weaver    | 3       | Emma       | Wong      | 4       | Eve        | Holt      | 5       | Charles    | Morris    | 6       | Tracey     | Ramos     | 4      | QA  | Eve      |
+
+  @DeleteUsersWithUsername
+  Scenario Outline: Verifying Deleting Users with Username George, Tracey
+    Given I want to search for all the users
+    When I click search users
+    Then I should get a successful response with status code 200
+
+    And page number should be <pageNo>
+    And per page should be <perPage>
+    And total users should be <totalUsers>
+    And total pages should be <totalPages>
+    And response should return <noOfUsers> users
+    And users should have an id
+
+    And user id <userId1> first name should be "<firstName1>" and last name should be "<lastName1>"
+    And user id <userId2> first name should be "<firstName2>" and last name should be "<lastName2>"
+    And user id <userId3> first name should be "<firstName3>" and last name should be "<lastName3>"
+    And user id <userId4> first name should be "<firstName4>" and last name should be "<lastName4>"
+    And user id <userId5> first name should be "<firstName5>" and last name should be "<lastName5>"
+    And user id <userId6> first name should be "<firstName6>" and last name should be "<lastName6>"
+
+    Then I want to delete user "<username>"
+    When I click delete user
+    Then I should get a successful response with status code 204
+
+    Examples:
+      | pageNo | perPage | totalUsers | totalPages | noOfUsers | userId1 | firstName1 | lastName1 | userId2 | firstName2 | lastName2 | userId3 | firstName3 | lastName3 | userId4 | firstName4 | lastName4 | userId5 | firstName5 | lastName5 | userId6 | firstName6 | lastName6 | username |
+      | 1      | 6       | 12         | 2          | 6         | 1       | George     | Bluth     | 2       | Janet      | Weaver    | 3       | Emma       | Wong      | 4       | Eve        | Holt      | 5       | Charles    | Morris    | 6       | Tracey     | Ramos     | George   |
+      | 1      | 6       | 12         | 2          | 6         | 1       | George     | Bluth     | 2       | Janet      | Weaver    | 3       | Emma       | Wong      | 4       | Eve        | Holt      | 5       | Charles    | Morris    | 6       | Tracey     | Ramos     | Tracey   |

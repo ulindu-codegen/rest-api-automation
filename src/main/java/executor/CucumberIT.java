@@ -15,7 +15,7 @@ public class CucumberIT {
                 "--threads", "1",
                 "-p", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm",
                 "-g", "stepdefs", "src/main/resources/assignment",
-                "-t", "@DeleteUsersWithUserId"
+                "-t", "@CreateUsersWithUserId"
 
         }, CucumberIT.class.getClassLoader());
 
