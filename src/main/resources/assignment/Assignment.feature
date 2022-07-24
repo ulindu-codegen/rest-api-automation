@@ -1,6 +1,6 @@
 Feature: QRest Final Assignment
 
-  @SearchUsersPage2Parameterized
+  @SearchUsersPage2
   Scenario Outline: Verify Searching users in Page 2
     Given I want to search for the users in page <pageNo>
     When I click search users
@@ -22,7 +22,7 @@ Feature: QRest Final Assignment
       | pageNo | perPage | totalUsers | totalPages | noOfUsers | userId1 | firstName1 | lastName1 | userId2 | firstName2 | lastName2 | userId3 | firstName3 | lastName3 | userId4 | firstName4 | lastName4 | userId5 | firstName5 | lastName5 | userId6 | firstName6 | lastName6 |
       | 2      | 6       | 12         | 2          | 6         | 7       | Michael    | Lawson    | 8       | Lindsay    | Ferguson  | 9       | Tobias     | Funke     | 10      | Byron      | Fields    | 11      | George     | Edwards   | 12      | Rachel     | Howell    |
 
-  @SearchUsersPage1&2Parameterized
+  @SearchUsersPage1&2
   Scenario Outline: Verify Searching users in Page 1 and 2
     Given I want to search for the users in page <pageNo>
     When I click search users
@@ -45,3 +45,17 @@ Feature: QRest Final Assignment
       | 1      | 6       | 12         | 2          | 6         | 1       | George     | Bluth     | 2       | Janet      | Weaver    | 3       | Emma       | Wong      | 4       | Eve        | Holt      | 5       | Charles    | Morris    | 6       | Tracey     | Ramos     |
       | 2      | 6       | 12         | 2          | 6         | 7       | Michael    | Lawson    | 8       | Lindsay    | Ferguson  | 9       | Tobias     | Funke     | 10      | Byron      | Fields    | 11      | George     | Edwards   | 12      | Rachel     | Howell    |
 
+  @SearchUsersWithUserId
+  Scenario Outline: Verify Searching users with user id 1, 5, 7, 9
+    Given I want to search for user id <userId>
+    When I click search user
+    Then I should get a successful response with status code 200
+    And user id should be <userId>
+    And user first name should be "<firstName>" and last name should be "<lastName>"
+
+    Examples:
+      | userId | firstName | lastName |
+      | 1      | George    | Bluth    |
+      | 5      | Charles   | Morris   |
+      | 7      | Michael   | Lawson   |
+      | 9      | Tobias    | Funke    |
