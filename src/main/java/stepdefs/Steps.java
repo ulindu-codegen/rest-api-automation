@@ -133,7 +133,7 @@ public class Steps implements En {
 
     }
 
-    @Before
+    /*@Before
     public void before() {
 
         System.out.println("@Before : Executes Before Each Test Scenario");
@@ -145,6 +145,6 @@ public class Steps implements En {
 
         System.out.println("@After : Executes After Each Test Scenario");
 
-    }
+    }*/
 
 }
