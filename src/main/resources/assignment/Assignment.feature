@@ -46,7 +46,7 @@ Feature: QRest Final Assignment
       | 2      | 6       | 12         | 2          | 6         | 7       | Michael    | Lawson    | 8       | Lindsay    | Ferguson  | 9       | Tobias     | Funke     | 10      | Byron      | Fields    | 11      | George     | Edwards   | 12      | Rachel     | Howell    |
 
   @SearchUsersWithUserId
-  Scenario Outline: Verify Searching users with user id 1, 5, 7, 9
+  Scenario Outline: Verify Searching users with User ID 1, 5, 7, 9
     Given I want to search for user id <userId>
     When I click search user
     Then I should get a successful response with status code 200
@@ -61,7 +61,7 @@ Feature: QRest Final Assignment
       | 9      | Tobias    | Funke    |
 
   @CreateUsersWithName
-  Scenario Outline: Verifying Creating Users with name Jane, Adam, Paul
+  Scenario Outline: Verifying Creating Users with Name Jane, Adam, Paul
     Given I want to create an user with name "<name>" and job "<job>"
     When I click create user
     Then I should get a successful response with status code 201
@@ -73,3 +73,28 @@ Feature: QRest Final Assignment
       | Jane | BA  |
       | Adam | DEV |
       | Paul | QA  |
+
+  @UpdateUsersWithUserId
+  Scenario Outline: Verify Updating Users with User ID 3, 9, 11
+    Given I want to update user id <userId> name as "<userName>" AND job as "<job>"
+    When I click update user
+    Then I should get a successful response with status code 200
+    And user name should be "<userName>" and job should be "<job>"
+
+    Examples:
+      | userId | userName | job |
+      | 3      | Jane     | DEV |
+      | 9      | Adam     | QA  |
+      | 11     | Paul     | BA  |
+
+  @DeleteUsersWithUserId
+  Scenario Outline: Verifying Deleting Users with User ID 4, 8, 12
+    Given I want to delete user id <userId>
+    When I click delete user
+    Then I should get a successful response with status code 204
+
+    Examples:
+      | userId |
+      | 4      |
+      | 8      |
+      | 12     |
